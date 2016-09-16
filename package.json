@@ -1,0 +1,26 @@
+{
+    "name": "gulp-cccp",
+    "version": "0.0.0",
+    "description": "gulp-cccp",
+    "main": "index.js",
+    "dependencies": {},
+    "devDependencies": {
+        "gulp": "^3.9.1",
+        "gulp-complexity": "^0.3.2",
+        "gulp-directory-map": "^0.1.3",
+        "gulp-js-prettify": "^0.1.0",
+        "gulp-jslint": "^1.0.5",
+        "gulp-line-ending-corrector": "^1.0.1",
+        "gulp-load-plugins": "^1.3.0",
+        "gulp-plumber": "^1.1.0",
+        "gulp-rimraf": "^0.2.0",
+        "gulp-util": "^3.0.7",
+        "plato": "^1.7.0",
+        "through2": "^2.0.1"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Petter Ahlberg",
+    "license": ""
+}
