@@ -2,7 +2,7 @@
     "name": "gulp-cccp",
     "version": "0.0.0",
     "description": "gulp Code Complexity Checker plus Plato",
-	"reposetory": "PetterBoozegunk/gulp-cccp"
+	"reposetory": "PetterBoozegunk/gulp-cccp",
     "main": "index.js",
 	"files": ["index.js"],
     "dependencies": {
