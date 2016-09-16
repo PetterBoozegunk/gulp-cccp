@@ -42,4 +42,5 @@ module.exports = function (config) {
         });
     });
 
+	gulp.task("cccp", ["plato"]);
 };
