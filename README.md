@@ -27,4 +27,9 @@ Glob (array, not string) to the files you want to check with gulp-complexity and
 
 ##Use
 Type this in the commanline:
+<pre>
 <code>gulp cccp</code>
+</pre>
+
+##Warning!
+The settings in gulp-js-prettify is all defaults except for "jslint_happy" that is set to <code>true</code>
