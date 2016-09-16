@@ -23,3 +23,8 @@ Glob for gulp-js-prettify and gulp-jslint
 
 ### complexityCheck (glob, array)
 Glob (array, not string) to the files you want to check with gulp-complexity and plato.
+
+
+##Use
+Type this in the commanline:
+<code>gulp cccp</code>
