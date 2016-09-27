@@ -34,21 +34,21 @@ cccp(cccpConfig);
 ```
 ## Options
 
-**platoDir (string)**
+**platoDir (string)**<br />
 The directory where you want the platoreport.
 
-**checkFixSrc (glob)**
+**checkFixSrc (glob)**<br />
 Glob for gulp-js-prettify and gulp-jslint
 
-**complexityCheck (glob, array)**
+**complexityCheck (glob, array)**<br />
 Glob (array, not string) to the files you want to check with gulp-complexity and plato.
 
-**prettify (object)**
-gulp-js-prettify options
+**prettify (object)**<br />
+gulp-js-prettify options<br />
 https://www.npmjs.com/package/gulp-js-prettify
 
-**jslint (object)**
-jslint options
+**jslint (object)**<br />
+jslint options<br />
 https://www.npmjs.com/package/gulp-jslint
 
 ## Use
