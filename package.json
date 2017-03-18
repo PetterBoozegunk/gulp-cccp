@@ -1,6 +1,6 @@
 {
     "name": "gulp-cccp",
-    "version": "0.1.1",
+    "version": "0.2.1",
     "description": "gulp Code Complexity Checker plus Plato",
     "repository": {
         "type": "git",
@@ -17,15 +17,16 @@
         "gulp-jslint": "^1.0.5",
         "gulp-line-ending-corrector": "^1.0.1",
         "gulp-load-plugins": "^1.3.0",
-        "gulp-util": "^3.0.7",
         "plato": "^1.7.0"
     },
     "devDependencies": {
-        "mocha": "^3.1.0",
-        "chai": "^3.5.0"
+        "chai": "^3.5.0",
+        "git-guppy": "^2.0.0",
+        "guppy-pre-push": "^0.2.1",
+        "mocha": "^3.1.0"
     },
     "scripts": {
-        "test": "./node_modules/.bin/mocha --reporter spec"
+        "test": "mocha"
     },
     "author": "Petter Ahlberg",
     "license": "MIT"

@@ -14,12 +14,11 @@ cccp({
         "!.idea/**"
     ],
     complexityCheck: ["*.js"],
-    prettify: {
-        jslint_happy: true
-    },
     platoDir: "report"
 });
 
 gulp.task("default", function () {
     gulp.start("cccp");
 });
+
+gulp.task("pre-push", ["jslint:cccp", "complexity:cccp"]);
