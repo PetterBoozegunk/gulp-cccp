@@ -14,9 +14,6 @@ cccp({
         "!.idea/**"
     ],
     complexityCheck: ["*.js"],
-    prettify: {
-        jslint_happy: true
-    },
     platoDir: "report"
 });
 

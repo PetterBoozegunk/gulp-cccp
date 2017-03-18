@@ -25,7 +25,7 @@
         "chai": "^3.5.0"
     },
     "scripts": {
-        "test": "./node_modules/.bin/mocha --reporter spec"
+        "test": "mocha"
     },
     "author": "Petter Ahlberg",
     "license": "MIT"
