@@ -72,21 +72,21 @@ module.exports = function (config) {
         return tasks.jslint(config);
     });
     gulp.task("jslint", ["prettify"], function () {
-        return gulp.start("jslint");
+        return tasks.jslint(config);
     });
 
     gulp.task("complexity:cccp", function () {
         return tasks.complexity(config);
     });
     gulp.task("complexity", ["jslint"], function () {
-        return gulp.start("complexity:cccp");
+        return tasks.complexity(config);
     });
 
     gulp.task("plato:cccp", function () {
         return tasks.plato(config);
     });
-    gulp.task("plato", ["jslint"], function () {
-        return gulp.start("plato:cccp");
+    gulp.task("plato", ["complexity"], function () {
+        return tasks.plato(config);
     });
 
     gulp.task("cccp", ["plato"]);
