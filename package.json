@@ -1,6 +1,6 @@
 {
     "name": "gulp-cccp",
-    "version": "0.1.1",
+    "version": "0.2.1",
     "description": "gulp Code Complexity Checker plus Plato",
     "repository": {
         "type": "git",
