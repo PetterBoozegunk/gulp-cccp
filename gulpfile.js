@@ -20,3 +20,5 @@ cccp({
 gulp.task("default", function () {
     gulp.start("cccp");
 });
+
+gulp.task("pre-push", ["jslint:cccp", "complexity:cccp"]);
