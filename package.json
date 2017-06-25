@@ -11,6 +11,7 @@
         "index.js"
     ],
     "dependencies": {
+        "es6-plato": "^1.0.14",
         "gulp": "^3.9.1",
         "gulp-complexity": "^0.3.2",
         "gulp-js-prettify": "^0.1.0",

@@ -1,0 +1,14 @@
+{
+    "checkFixSrc": [
+        "*.js",
+        "*.json",
+        "test/*.js",
+        "!node_modules/**",
+        "!.idea/**"
+    ],
+    "complexityCheck": [
+        "*.js",
+        "test/*.js"
+    ],
+    "platoDir": "report"
+}

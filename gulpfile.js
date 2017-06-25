@@ -3,22 +3,11 @@
 "use strict";
 
 var gulp = require("gulp"),
-    cccp = require("./index");
+    cccp = require("./index"),
+    cccpConfig = require("./cccp.config.json");
 
-cccp({
-    checkFixSrc: [
-        "*.js",
-        "*.json",
-        "test/*.js",
-        "!node_modules/**",
-        "!.idea/**"
-    ],
-    complexityCheck: ["*.js"],
-    platoDir: "report"
-});
+cccp(cccpConfig);
 
 gulp.task("default", function () {
     gulp.start("cccp");
 });
-
-gulp.task("pre-push", ["jslint:cccp", "complexity:cccp"]);
