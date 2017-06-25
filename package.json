@@ -20,19 +20,15 @@
         "plato": "^1.7.0"
     },
     "devDependencies": {
-        "ghooks": "^2.0.0",
         "chai": "^3.5.0",
         "chai-fs": "^1.0.0",
+        "husky": "^0.14.1",
         "mocha": "^3.1.0"
     },
     "scripts": {
         "posttest": "gulp jslint:cccp && gulp complexity:cccp",
-        "test": "mocha"
-    },
-    "config": {
-        "ghooks": {
-            "pre-push": "npm test"
-        }
+        "test": "mocha",
+        "prepush": "npm test"
     },
     "author": "Petter Ahlberg",
     "license": "MIT"
