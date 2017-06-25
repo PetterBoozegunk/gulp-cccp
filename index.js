@@ -105,7 +105,5 @@ tasks = {
 };
 
 module.exports = function (config) {
-    util.addTasks(gulp, config);
-
-    return gulp;
+    return util.addTasks(gulp, config);
 };
