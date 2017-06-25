@@ -6,7 +6,6 @@ var gulp = require("gulp"),
     plugins = require("gulp-load-plugins")(),
     plato = require("plato"),
     util = require("./util"),
-    timeOut,
     tasks;
 
 tasks = {
@@ -39,9 +38,7 @@ tasks = {
         var platoConfig = util.getPlatoConfig(config);
 
         return plato.inspect(config.complexityCheck, platoConfig.dir, {}, function () {
-            clearTimeout(timeOut);
-
-            timeOut = setTimeout(function () {
+            setTimeout(function () {
                 console.log("Plato done");
             }, 0);
         });
