@@ -33,19 +33,19 @@ describe("Plato tests", function () {
 
         testGulp.start("plato:cccp");
 
-        // after(function (done) {
-        //     rimraf(testConfig.platoDir, {}, function () {
-        //         console.log("(after hook) rimraf: " + testConfig.platoDir + " was removed");
-        //         done();
-        //     });
-        // });
+        after(function (done) {
+            rimraf(testConfig.platoDir, {}, function () {
+                console.log("(after hook) rimraf: " + testConfig.platoDir + " was removed");
+                done();
+            });
+        });
 
         it("Should have a directory called '" + testConfig.platoDir + "'", function () {
             expect(testConfig.platoDir).to.be.a.directory();
         });
 
-        it("Should have a '" + testConfig.platoDir + "/index.html' file", function () {
-            expect(testConfig.platoDir + "/index.html").to.be.a.file();
-        });
+        // it("Should have a '" + testConfig.platoDir + "/index.html' file", function () {
+        //     expect(testConfig.platoDir + "/index.html").to.be.a.file();
+        // });
     });
 });
