@@ -11,6 +11,7 @@
         "index.js"
     ],
     "dependencies": {
+        "ghooks": "^2.0.0",
         "gulp": "^3.9.1",
         "gulp-complexity": "^0.3.2",
         "gulp-js-prettify": "^0.1.0",
@@ -27,7 +28,13 @@
         "mocha": "^3.1.0"
     },
     "scripts": {
+        "pretest": "gulp jslint:cccp && gulp complexity:cccp",
         "test": "mocha"
+    },
+    "config": {
+        "ghooks": {
+            "pre-push": "npm test"
+        }
     },
     "author": "Petter Ahlberg",
     "license": "MIT"

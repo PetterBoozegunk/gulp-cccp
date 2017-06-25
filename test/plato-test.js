@@ -1,5 +1,5 @@
-/*jslint node: true*/
-/*global describe, it, beforeEach*/
+/*jslint node: true, white: true*/
+/*global describe, it, beforeEach, after*/
 
 "use strict";
 
@@ -20,7 +20,7 @@ describe("Plato tests", function () {
             ],
             platoDir: "platoDir-test"
         },
-        testGulp = cccp(testConfig);
+            testGulp = cccp(testConfig);
 
         testGulp.start("plato:cccp");
 
