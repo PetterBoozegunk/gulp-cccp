@@ -5,67 +5,9 @@
 var gulp = require("gulp"),
     plugins = require("gulp-load-plugins")(),
     plato = require("plato"),
-    util,
+    util = require("./util"),
+    timeOut,
     tasks;
-
-util = {
-    isObject: function (someThing) {
-        return (someThing && typeof someThing === "object");
-    },
-    returnObj: function (someThing) {
-        return util.isObject(someThing) ? someThing : {};
-    },
-    copyProperties: function (from, to) {
-        var newObj = util.returnObj(to);
-
-        Object.keys(util.returnObj(from)).forEach(function (propName) {
-            newObj[propName] = from[propName];
-        });
-
-        return newObj;
-    },
-    getOptions: function (defaults, config) {
-        var options = util.copyProperties(defaults, {});
-
-        return util.copyProperties(config, options);
-    },
-    addTaskFunc: function (taskName, config, beforeArray, gulp) {
-        gulp.task(taskName, beforeArray, function () {
-            return tasks[taskName](config);
-        });
-
-        gulp.task(taskName + ":cccp", function () {
-            return tasks[taskName](config);
-        });
-
-        return gulp;
-    },
-    addTaskArray: function (taskName, beforeArray, gulp) {
-        gulp.task(taskName, beforeArray);
-
-        return gulp;
-    },
-    addTask: function (taskName, config, beforeArray, gulp) {
-        if (tasks[taskName]) {
-            gulp = util.addTaskFunc(taskName, config, beforeArray, gulp);
-        } else {
-            gulp = util.addTaskArray(taskName, beforeArray, gulp);
-        }
-
-        return gulp;
-    },
-    addTasks: function (gulp, config) {
-        var taskNames = Object.keys(tasks).concat(["cccp"]);
-
-        taskNames.forEach(function (taskName, index) {
-            var beforeArray = taskNames.slice(0, index);
-
-            gulp = util.addTask(taskName, config, beforeArray, gulp);
-        });
-
-        return gulp;
-    }
-};
 
 tasks = {
     prettify: function (config) {
@@ -94,10 +36,12 @@ tasks = {
             .pipe(plugins.complexity());
     },
     plato: function (config) {
-        var platoDir = config.platoDir || "report";
+        var platoConfig = util.getPlatoConfig(config);
 
-        return plato.inspect(config.complexityCheck, platoDir, {}, function () {
-            setTimeout(function () {
+        return plato.inspect(config.complexityCheck, platoConfig.dir, {}, function () {
+            clearTimeout(timeOut);
+
+            timeOut = setTimeout(function () {
                 console.log("Plato done");
             }, 0);
         });
@@ -105,5 +49,7 @@ tasks = {
 };
 
 module.exports = function (config) {
+    util.setTasks(tasks);
+
     return util.addTasks(gulp, config);
 };

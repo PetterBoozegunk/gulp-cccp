@@ -13,22 +13,24 @@ var chai = require("chai"),
 chai.use(require('chai-fs'));
 
 util = {
-    setTestDir: function (cccpConfig) {
-        cccpConfig.platoDir = "platoReport-Test";
+    setTestDir: function (cccpConfig, testDirName) {
+        cccpConfig.platoDir = testDirName;
 
         return cccpConfig;
     },
-    getTestConfig: function () {
+    getTestConfig: function (testDirName, platoCongifObj) {
         var testConfig = Object.create(cccpConfig);
 
-        return util.setTestDir(testConfig);
+        testConfig.plato = platoCongifObj;
+
+        return util.setTestDir(testConfig, testDirName);
     }
 };
 
 describe("Plato tests", function () {
 
     describe("Basic test", function () {
-        var testConfig = util.getTestConfig(),
+        var testConfig = util.getTestConfig("platoReport-Test"),
             testGulp = cccp(testConfig);
 
         testGulp.start("plato:cccp");
@@ -43,9 +45,26 @@ describe("Plato tests", function () {
         it("Should have a directory called '" + testConfig.platoDir + "'", function () {
             expect(testConfig.platoDir).to.be.a.directory();
         });
+    });
 
-        // it("Should have a '" + testConfig.platoDir + "/index.html' file", function () {
-        //     expect(testConfig.platoDir + "/index.html").to.be.a.file();
-        // });
+    describe("Plato config object test", function () {
+        var platoCongifObj = {
+            "dir": "platoReport-Test2"
+        },
+            testConfig = util.getTestConfig("platoReport-Test", platoCongifObj),
+            testGulp = cccp(testConfig);
+
+        testGulp.start("plato:cccp");
+
+        after(function (done) {
+            rimraf("platoReport-Test*", {}, function () {
+                console.log("(after hook) rimraf: " + platoCongifObj.dir + " was removed");
+                done();
+            });
+        });
+
+        it("Should have a directory called '" + platoCongifObj.dir + "'", function () {
+            expect(platoCongifObj.dir).to.be.a.directory();
+        });
     });
 });

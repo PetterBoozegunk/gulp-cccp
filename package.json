@@ -27,8 +27,9 @@
         "mocha": "^3.1.0"
     },
     "scripts": {
-        "posttest": "gulp jslint:cccp && gulp complexity:cccp",
+        "pretest": "gulp jslint:cccp && gulp complexity:cccp",
         "test": "mocha",
+        "precommit": "gulp jslint:cccp && gulp complexity:cccp",
         "prepush": "npm test"
     },
     "author": "Petter Ahlberg",
