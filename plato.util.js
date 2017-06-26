@@ -2,23 +2,33 @@
 
 "use strict";
 
-var platoUtil;
+var platoUtil,
+    defaultConfig = {
+        dir: "report",
+        options: {
+            version: "es5"
+        }
+    };
 
 platoUtil = {
-    getPlatoDir: function (config) {
-        return config.platoDir || "report";
+    initPlatoConfig: function (config) {
+        return config.plato || {
+            dir: config.platoDir
+        };
     },
-    setPlatoDir: function (config, platoConfig) {
-        if (!platoConfig.dir) {
-            platoConfig.dir = platoUtil.getPlatoDir(config);
-        }
+    setPlatoConfig: function (platoConfig) {
+        Object.keys(defaultConfig).forEach(function (prop) {
+            if (!platoConfig[prop]) {
+                platoConfig[prop] = defaultConfig[prop];
+            }
+        });
 
         return platoConfig;
     },
     getPlatoConfig: function (config) {
-        var platoConfig = config.plato || {};
+        var platoConfig = platoUtil.initPlatoConfig(config);
 
-        return platoUtil.setPlatoDir(config, platoConfig);
+        return platoUtil.setPlatoConfig(platoConfig);
     }
 };
 

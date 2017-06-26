@@ -47,7 +47,7 @@ describe("Plato tests", function () {
         });
     });
 
-    describe("Plato config object test", function () {
+    describe("Plato config test", function () {
         var platoCongifObj = {
             "dir": "platoReport-Test2"
         },

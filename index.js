@@ -37,7 +37,7 @@ tasks = {
     plato: function (config) {
         var platoConfig = util.getPlatoConfig(config);
 
-        return plato.inspect(config.complexityCheck, platoConfig.dir, {}, function () {
+        return plato.inspect(config.complexityCheck, platoConfig.dir, platoConfig.options, function () {
             setTimeout(function () {
                 console.log("Plato done");
             }, 0);

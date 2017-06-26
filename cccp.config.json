@@ -8,9 +8,5 @@
         "*.js",
         "test/*.js"
     ],
-    "platoDir": "report",
-    "plato": {
-        "dir": "report",
-        "version": "es5"
-    }
+    "platoDir": "report"
 }
