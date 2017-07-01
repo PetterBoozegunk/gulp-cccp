@@ -3,8 +3,8 @@
 "use strict";
 
 var utilFiles = [
-    "tasks.util.js",
-    "plato.util.js"
+    "tasks.utils.js",
+    "plato.utils.js"
 ],
     util;
 

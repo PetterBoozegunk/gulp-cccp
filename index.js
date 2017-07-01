@@ -5,7 +5,7 @@
 var gulp = require("gulp"),
     plugins = require("gulp-load-plugins")(),
     plato = require("plato"),
-    util = require("./util"),
+    util = require("./utils/utils"),
     tasks;
 
 tasks = {
