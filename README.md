@@ -9,7 +9,9 @@ gulpfile example:
 var gulp = require("gulp"),
     cccp = require("gulp-cccp"),
     cccpConfig = {
-        platoDir: "./report",
+        plato: {
+            "dir": "report"
+        },
         checkFixSrc: [
             "**/*.js",
             "**/*.json",
@@ -18,7 +20,7 @@ var gulp = require("gulp"),
         ],
         complexityCheck: ["*.js"]
     };
-
+ 
 cccp(cccpConfig);
 ```
 
@@ -36,6 +38,17 @@ cccp(cccpConfig);
 
 **platoDir (string)**<br />
 The directory where you want the platoreport.
+
+**plato (object)**<br>
+***(will owerwrite platoDir)***
+```javascript
+{
+    dir: "[platoReportDirectory] (string)" //(default: "report")
+    options: {} // [platoArgs] (object)
+}
+```
+checkout: https://www.npmjs.com/package/es6-plato 
+for availible "platoArgs"
 
 **checkFixSrc (glob)**<br />
 Glob for gulp-js-prettify and gulp-jslint

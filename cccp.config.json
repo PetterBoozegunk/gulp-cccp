@@ -10,7 +10,9 @@
         "utils/*js",
         "test/*.js"
     ],
-    "platoDir": "report",
+    "plato": {
+        "dir": "report"
+    },
     "prettify": {
         "jslint_happy": true,
         "operator_position": "before-newline"

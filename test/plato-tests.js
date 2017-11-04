@@ -29,7 +29,7 @@ platoTestUtil = {
             testConf[key] = cccpConfig[key];
         });
 
-        return platoTestUtil.setTestConfig(cccpConfig, testDirName);
+        return platoTestUtil.setTestConfig(testConf, testDirName);
     }
 };
 
@@ -39,7 +39,11 @@ describe("Plato", function () {
 
         describe("dir (1)", function () {
             var testConfig = platoTestUtil.getTestConfig("platoReport-Test"),
-                testGulp = cccp(testConfig);
+                testGulp;
+
+            delete testConfig.plato;
+
+            testGulp = cccp(testConfig);
 
             testGulp.start("plato:cccp");
 
