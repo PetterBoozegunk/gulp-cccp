@@ -1,29 +1,13 @@
-/*jslint node: true*/
+/*jslint node: true, white: true*/
 
 "use strict";
 
 var gulp = require("gulp"),
     plugins = require("gulp-load-plugins")(),
-    plato = require("plato"),
-    util,
+    plato = require("es6-plato"),
+    util = require("./utils/utils"),
+    platoUtils = require('./utils/plato.utils'),
     tasks;
-
-util = {
-    copyProperties: function (from, to) {
-        var newObj = to || {};
-
-        Object.keys(from || {}).forEach(function (propName) {
-            newObj[propName] = from[propName];
-        });
-
-        return newObj;
-    },
-    getOptions: function (defaults, config) {
-        var options = util.copyProperties(defaults, {});
-
-        return util.copyProperties(config, options);
-    }
-};
 
 tasks = {
     prettify: function (config) {
@@ -52,42 +36,14 @@ tasks = {
             .pipe(plugins.complexity());
     },
     plato: function (config) {
-        var platoDir = config.platoDir || "report";
+        var platoConfig = platoUtils.getPlatoConfig(config);
 
-        return plato.inspect(config.complexityCheck, platoDir, {}, function () {
-            setTimeout(function () {
-                console.log("Plato done");
-            }, 0);
-        });
+        return plato.inspect(config.complexityCheck, platoConfig.dir, platoConfig.options);
     }
 };
 
 module.exports = function (config) {
+    util.setTasks(tasks);
 
-    gulp.task("prettify", function () {
-        return tasks.prettify(config);
-    });
-
-    gulp.task("jslint:cccp", function () {
-        return tasks.jslint(config);
-    });
-    gulp.task("jslint", ["prettify"], function () {
-        return tasks.jslint(config);
-    });
-
-    gulp.task("complexity:cccp", function () {
-        return tasks.complexity(config);
-    });
-    gulp.task("complexity", ["jslint"], function () {
-        return tasks.complexity(config);
-    });
-
-    gulp.task("plato:cccp", function () {
-        return tasks.plato(config);
-    });
-    gulp.task("plato", ["complexity"], function () {
-        return tasks.plato(config);
-    });
-
-    gulp.task("cccp", ["plato"]);
+    return util.addTasks(gulp, config);
 };

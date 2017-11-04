@@ -1,0 +1,20 @@
+{
+    "checkFixSrc": [
+        "*.js",
+        "*.json",
+        "utils/*js",
+        "test/*.js"
+    ],
+    "complexityCheck": [
+        "*.js",
+        "utils/*js",
+        "test/*.js"
+    ],
+    "plato": {
+        "dir": "report"
+    },
+    "prettify": {
+        "jslint_happy": true,
+        "operator_position": "before-newline"
+    }
+}
