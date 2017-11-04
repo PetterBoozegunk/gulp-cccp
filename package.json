@@ -7,9 +7,6 @@
         "url": "https://github.com/PetterBoozegunk/gulp-cccp.git"
     },
     "main": "index.js",
-    "files": [
-        "index.js"
-    ],
     "dependencies": {
         "es6-plato": "^1.0.14",
         "gulp": "^3.9.1",
