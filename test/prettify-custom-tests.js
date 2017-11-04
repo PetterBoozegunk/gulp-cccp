@@ -97,9 +97,9 @@ describe('Prettify custom test 2', function () {
         .on("end", function () {
 
             vfs.src([
-                    "./test-files/expected/prettify-conditional-operator-2.js",
-                    "./test-files/results/prettify-conditional-operator-2.js"
-                ])
+                "./test-files/expected/prettify-conditional-operator-2.js",
+                "./test-files/results/prettify-conditional-operator-2.js"
+            ])
                 .pipe(plugins.lineEndingCorrector({
                     eolc: "LF"
                 }))
