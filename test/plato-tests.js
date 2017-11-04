@@ -8,63 +8,93 @@ var chai = require("chai"),
     rimraf = require("rimraf"),
     cccpConfig = require("../cccp.config.json"),
     cccp = require("../index"),
-    util;
+    platoTestUtil;
 
 chai.use(require('chai-fs'));
 
-util = {
-    setTestDir: function (cccpConfig, testDirName) {
-        cccpConfig.platoDir = testDirName;
+platoTestUtil = {
+    setTestConfig: function (testConfig, testDirName) {
+        if (typeof testDirName !== "string") {
+            testConfig.plato = testDirName;
+        } else {
+            testConfig.platoDir = testDirName;
+        }
 
-        return cccpConfig;
+        return testConfig;
     },
-    getTestConfig: function (testDirName, platoCongifObj) {
-        var testConfig = Object.create(cccpConfig);
+    getTestConfig: function (testDirName) {
+        var testConf = {};
 
-        testConfig.plato = platoCongifObj;
+        Object.keys(cccpConfig).forEach(function (key) {
+            testConf[key] = cccpConfig[key];
+        });
 
-        return util.setTestDir(testConfig, testDirName);
+        return platoTestUtil.setTestConfig(cccpConfig, testDirName);
     }
 };
 
-describe("Plato tests", function () {
+describe("Plato", function () {
 
-    describe("Basic test", function () {
-        var testConfig = util.getTestConfig("platoReport-Test"),
-            testGulp = cccp(testConfig);
+    describe("Config", function () {
 
-        testGulp.start("plato:cccp");
+        describe("dir (1)", function () {
+            var testConfig = platoTestUtil.getTestConfig("platoReport-Test"),
+                testGulp = cccp(testConfig);
 
-        after(function (done) {
-            rimraf(testConfig.platoDir, {}, function () {
-                console.log("(after hook) rimraf: " + testConfig.platoDir + " was removed");
-                done();
+            testGulp.start("plato:cccp");
+
+            after(function () {
+                rimraf(testConfig.platoDir, function () {
+                    console.log("(after hook) rimraf: " + testConfig.platoDir + " was removed");
+                });
+            });
+
+            it("Should have a directory called '" + testConfig.platoDir + "'", function () {
+                expect(testConfig.platoDir).to.be.a.directory();
             });
         });
 
-        it("Should have a directory called '" + testConfig.platoDir + "'", function () {
-            expect(testConfig.platoDir).to.be.a.directory();
-        });
-    });
+        describe("dir (2)", function () {
+            var platoCongifObj = {
+                "dir": "platoReport-Test2"
+            },
+                testConfig = platoTestUtil.getTestConfig(platoCongifObj),
+                testGulp = cccp(testConfig);
 
-    describe("Plato config test", function () {
-        var platoCongifObj = {
-            "dir": "platoReport-Test2"
-        },
-            testConfig = util.getTestConfig("platoReport-Test", platoCongifObj),
-            testGulp = cccp(testConfig);
+            testGulp.start("plato:cccp");
 
-        testGulp.start("plato:cccp");
+            after(function () {
+                rimraf(platoCongifObj.dir, function () {
+                    console.log("(after hook) rimraf: " + platoCongifObj.dir + " was removed");
+                });
+            });
 
-        after(function (done) {
-            rimraf("platoReport-Test*", {}, function () {
-                console.log("(after hook) rimraf: " + platoCongifObj.dir + " was removed");
-                done();
+            it("Should have a directory called '" + platoCongifObj.dir + "'", function () {
+                expect(platoCongifObj.dir).to.be.a.directory();
             });
         });
 
-        it("Should have a directory called '" + platoCongifObj.dir + "'", function () {
-            expect(platoCongifObj.dir).to.be.a.directory();
+        describe("dir (3)", function () {
+            var platoCongifObj = {
+                "dir": "platoReport-Test3",
+                "options": {
+                    "esversion": 6
+                }
+            },
+                testConfig = platoTestUtil.getTestConfig(platoCongifObj),
+                testGulp = cccp(testConfig);
+
+            testGulp.start("plato:cccp");
+
+            after(function () {
+                rimraf(platoCongifObj.dir, function () {
+                    console.log("(after hook) rimraf: " + platoCongifObj.dir + " was removed");
+                });
+            });
+
+            it("Should have a directory called '" + platoCongifObj.dir + "'", function () {
+                expect(platoCongifObj.dir).to.be.a.directory();
+            });
         });
     });
 });

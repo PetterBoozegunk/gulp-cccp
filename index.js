@@ -4,8 +4,9 @@
 
 var gulp = require("gulp"),
     plugins = require("gulp-load-plugins")(),
-    plato = require("plato"),
+    plato = require("es6-plato"),
     util = require("./utils/utils"),
+    platoUtils = require('./utils/plato.utils'),
     tasks;
 
 tasks = {
@@ -35,13 +36,9 @@ tasks = {
             .pipe(plugins.complexity());
     },
     plato: function (config) {
-        var platoConfig = util.getPlatoConfig(config);
+        var platoConfig = platoUtils.getPlatoConfig(config);
 
-        return plato.inspect(config.complexityCheck, platoConfig.dir, platoConfig.options, function () {
-            setTimeout(function () {
-                console.log("Plato done");
-            }, 0);
-        });
+        return plato.inspect(config.complexityCheck, platoConfig.dir, platoConfig.options);
     }
 };
 
